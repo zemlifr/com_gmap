@@ -52,7 +52,7 @@ function ShowMap()
 
 function bindInfoWindow(marker, map, infoWindow, html) {
       google.maps.event.addListener(marker, 'click', function() {
-        document.getElementById('markerText').textContent = html;
+        //document.getElementById('markerText').textContent = html;
         infoWindow.setContent(html);
         infoWindow.open(map, marker);
       });
@@ -66,17 +66,18 @@ function LoadMarkers(data)
   {
     var title = markersXML[i].getAttribute("title");
     var set = markersXML[i].getAttribute("set");
+    var icon = markersXML[i].getAttribute("icon");
     var coords = new google.maps.LatLng(parseFloat(markersXML[i].getAttribute("lat")),
                                         parseFloat(markersXML[i].getAttribute("lng")));
     var marker = new google.maps.Marker({
       map: map,
       position: coords,
-      icon: "http://labs.google.com/ridefinder/images/mm_20_blue.png",
-      shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+      icon: icon
     });
     markers[i] = new MyMarker(marker,set,title);
-   
     bindInfoWindow(markers[i].marker,map,infoWindow,markersXML[i].childNodes[0].nodeValue);
+    if(!document.getElementById('set'+set).checked)
+        markers[i].Hide();
   }
     
 }

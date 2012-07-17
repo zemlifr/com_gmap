@@ -17,7 +17,7 @@ for($i=0,$max=count($this->sets);$i<$max;$i++)
 {
     $row = $this->sets[$i];
 ?>
-<input type ="checkbox" id="set<?php echo $row->id;?>" value="<?php echo $row->id;?>" onclick="ChangeState(this)" checked="checked"><?php echo $row->title;?><br>
+<img src="<?php echo $row->icon;?>" alt="Set icon"><input type ="checkbox" id="set<?php echo $row->id;?>" value="<?php echo $row->id;?>" onclick="ChangeState(this)" checked="checked"><?php echo $row->title;?><br>
 
 <?php
 }
