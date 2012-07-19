@@ -1,6 +1,45 @@
 <?php
+// No direct access
 defined('_JEXEC') or die('Restricted access');
-?>  
+JHTML::_('behavior.formvalidation'); 
+?>
+<style type="text/css">
+/* form validation */
+.invalid { border-color: #ff0000; background-color:#ffd;}
+</style>
+<script type="text/javascript">
+
+ var myFormValidator = JFormValidator.extend({});
+  // override core behavior
+  function submitbutton( pressbutton )
+  {
+    if( pressbutton == 'cancel' )
+    {
+      submitform( pressbutton );
+      return true;
+    }
+    var form = document.adminForm;
+    var validator = new myFormValidator();
+    if( validator.isValid( form ) )
+    {
+      submitform( pressbutton );
+    }
+    else
+    {
+      alert( '<?php echo JText::_('Fields highlighted in red are compulsory or unacceptable!'); ?>' );
+    }
+  }
+  // our validation script
+  function doValidate( f )
+  {
+    if( document.formvalidator.isValid( f ) )
+    {
+      return true;
+    }
+    return false;
+  }
+  
+</script>
 
 <noscript><fieldset class="adminform"><?php echo JText::_( 'Váš prohlížeč nepodporuje javascript. Akci nebude možno uložit.' ); ?></fieldset></noscript>
 <form action="index.php" method="post" name="adminForm" id="adminForm" class="form-validate" onSubmit="//return doValidate(this)">

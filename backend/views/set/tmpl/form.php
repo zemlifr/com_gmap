@@ -1,3 +1,14 @@
+
+<?php
+// No direct access
+defined('_JEXEC') or die('Restricted access');
+JHTML::_('behavior.formvalidation'); 
+?>
+
+<style type="text/css">
+/* form validation */
+.invalid { border-color: #ff0000; background-color:#ffd;}
+</style>
 <script type="text/javascript">
 function LoadIcon(option)
 {
@@ -8,16 +19,40 @@ function LoadIcon(option)
             option.text = icon;
         }
 }
+
+ var myFormValidator = JFormValidator.extend({});
+  // override core behavior
+  function submitbutton( pressbutton )
+  {
+    if( pressbutton == 'cancel' )
+    {
+      submitform( pressbutton );
+      return true;
+    }
+    var form = document.adminForm;
+    var validator = new myFormValidator();
+    if( validator.isValid( form ) )
+    {
+      submitform( pressbutton );
+    }
+    else
+    {
+      alert( '<?php echo JText::_('Fields highlighted in red are compulsory or unacceptable!'); ?>' );
+    }
+  }
+  // our validation script
+  function doValidate( f )
+  {
+    if( document.formvalidator.isValid( f ) )
+    {
+      return true;
+    }
+    return false;
+  }
+  
 </script>
 
-<?php
-// No direct access
-defined('_JEXEC') or die('Restricted access'); ?>
-
-<style type="text/css">
-  .invalid { border: 1px solid red; }
-</style>
-<form action="index.php" method="post" name="adminForm" id="adminForm" class="form-validate" onSubmit="/*return doValidate(this)*/">
+<form action="index.php" method="post" name="adminForm" id="adminForm" class="form-validate" onSubmit="return doValidate(this)">
 <div class="col100">
     <fieldset class="adminform">
         <legend><?php
@@ -50,7 +85,7 @@ defined('_JEXEC') or die('Restricted access'); ?>
         </tr>
         <tr>
             <td width="100" align="right" class="key"><label for="description"><?php echo JText::_( 'Description' ); ?>:</label></td>
-            <td><textarea class="text_area required" name="description" id="description" cols="40" rows="5"><?php echo $this->data->description;?></textarea></td>            
+            <td><textarea class="text_area " name="description" id="description" cols="40" rows="5"><?php echo $this->data->description;?></textarea></td>            
         </tr>
     </table>
     </fieldset>
