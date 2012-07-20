@@ -69,13 +69,16 @@ function LoadMarkers(data)
     var icon = markersXML[i].getAttribute("icon");
     var coords = new google.maps.LatLng(parseFloat(markersXML[i].getAttribute("lat")),
                                         parseFloat(markersXML[i].getAttribute("lng")));
+                                        
+    var text =  markersXML[i].hasChildNodes() ? markersXML[i].childNodes[0].nodeValue : " ";
+    
     var marker = new google.maps.Marker({
       map: map,
       position: coords,
       icon: icon
     });
     markers[i] = new MyMarker(marker,set,title);
-    bindInfoWindow(markers[i].marker,map,infoWindow,markersXML[i].childNodes[0].nodeValue);
+    bindInfoWindow(markers[i].marker,map,infoWindow,text);
     if(!document.getElementById('set'+set).checked)
         markers[i].Hide();
   }

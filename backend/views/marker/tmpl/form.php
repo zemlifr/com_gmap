@@ -62,7 +62,7 @@ JHTML::_('behavior.formvalidation');
         <tr>
             <td width="100" align="right" class="key"><label for="set"><?php echo JText::_( 'Set' ); ?>:</label></td>
             <td>
-                <select name="set_id" id="set_id" size="1">
+                <select class="required" name="set_id" id="set_id" size="1">
                 <?php 
                     for($i=0, $max = count($this->sets);$i<$max;$i++)
                     {
