@@ -1,10 +1,22 @@
 var map;
+var marker;
 
 function SetLatLog(event)
 {
     document.getElementById('latitude').value = event.latLng.lat().toFixed(8);
     document.getElementById('longitude').value = event.latLng.lng().toFixed(8);
     
+    var coords = new google.maps.LatLng(event.latLng.lat(),event.latLng.lng());
+    
+    if(!marker)
+        {                               
+          marker = new google.maps.Marker({map: map, position: coords});
+          marker.setClickable(false);
+        }
+    else
+        {
+            marker.setPosition(coords);
+        }
 }
 
 function ShowMap()
