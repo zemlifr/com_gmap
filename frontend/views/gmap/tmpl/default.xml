@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+  <state>
+      
+    <params>
+        
+      <param name="latitude" type="text" default="10.000000" label="Center latitude" size="12" />
+      <param name="longitude" type="text" default="40.000000" label="Center longitude" size="12" />
+    </params>
+    
+  </state>
+</metadata>

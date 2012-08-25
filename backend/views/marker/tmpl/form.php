@@ -53,11 +53,11 @@ JHTML::_('behavior.formvalidation');
         </tr>
         <tr>
             <td width="50" align="right" class="key"><label for="latitude"><?php echo JText::_( 'Latitude' ); ?>:</label></td>
-            <td><input class="text_area required" type="text" name="latitude" id="latitude" size="40" maxlength="12" value="<?php echo $this->marker->latitude;?>" /></td>
+            <td><input class="text_area required validate-numeric" type="text" name="latitude" id="latitude" size="40" maxlength="12" value="<?php echo $this->marker->latitude;?>" /></td>
         </tr>
         <tr>
             <td width="100" align="right" class="key"><label for="longitude"><?php echo JText::_( 'Longitude' ); ?>:</label></td>
-            <td><input class="text_area required" type="text" name="longitude" id="longitude" size="40" maxlength="12" value="<?php echo $this->marker->longitude;?>" /></td>
+            <td><input class="text_area required validate-numeric" type="text" name="longitude" id="longitude" size="40" maxlength="12" value="<?php echo $this->marker->longitude;?>" /></td>
         </tr>
         <tr>
             <td width="100" align="right" class="key"><label for="set"><?php echo JText::_( 'Set' ); ?>:</label></td>

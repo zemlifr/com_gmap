@@ -45,7 +45,7 @@ class GmapModelMarker extends JModel
     function Store()
     {   
       $row =& $this->getTable();
-      $data = JRequest::get( 'post' );
+      $data = JRequest::get( 'post', JREQUEST_ALLOWHTML );
       
       // Bind the form fields to the table
       if (!$row->bind($data)) {
@@ -68,7 +68,7 @@ class GmapModelMarker extends JModel
       $row =& $this->getTable();
  
       foreach($cids as $cid) {
-        if ($this->hasMarkers($cid) || !$row->delete( $cid )) {
+        if ( !$row->delete( $cid )) {
             $this->setError( $row->getErrorMsg() );
             return false;
         }
