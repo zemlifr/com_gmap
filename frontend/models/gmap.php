@@ -13,7 +13,7 @@ class GmapModelGmap extends JModel
     function getSets()
     {
       $db =& JFactory::getDBO();
-      $query = "SELECT * FROM #__gmap_sets WHERE published = 1";
+      $query = "SELECT * FROM #__gmap_sets WHERE published = 1 ORDER BY title ASC";
       $db->setQuery($query);
       $result=$db->loadObjectList();
       

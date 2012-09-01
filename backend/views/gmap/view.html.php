@@ -28,7 +28,10 @@ class GmapViewGmap extends JView
         $model =& $this->getModel();
 
         $markers = $model->getMarkersList();
+        $pagination =& $this->get('Pagination');
+        
         $this->assignRef('markers', $markers);
+        $this->assignRef('pagination', $pagination);
 
         parent::display($tpl);
 

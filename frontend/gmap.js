@@ -69,8 +69,10 @@ function LoadMarkers(data)
     var icon = markersXML[i].getAttribute("icon");
     var coords = new google.maps.LatLng(parseFloat(markersXML[i].getAttribute("lat")),
                                         parseFloat(markersXML[i].getAttribute("lng")));
-                                        
+    
     var text =  markersXML[i].hasChildNodes() ? markersXML[i].childNodes[0].nodeValue : " ";
+    
+    text = "<h2>"+title+"</h2>"+"<p/>"+text;
     
     var marker = new google.maps.Marker({
       map: map,
