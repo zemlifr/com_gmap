@@ -2,6 +2,7 @@
 <?php
 // No direct access
 defined('_JEXEC') or die('Restricted access');
+jimport( 'joomla.html.html.list' );
 JHTML::_('behavior.formvalidation'); 
 ?>
 
@@ -78,9 +79,19 @@ function LoadIcon(option)
             <td>
                 <select name="icon" id="icon" size="1">
                     <?php if($this->data->icon){ ?>
-                    <option value="<?php echo $this->data->icon;?>"><?php echo $this->data->icon;?></option><?php }?>
+                    <option value="<?php echo $this->data->icon;?>"><?php echo $this->data->icon;?></option>
+                    <?php }
+                        foreach ($this->icons as $icon) 
+                            {
+                                if($this->data->icon != JURI::root()."media/com_gmap/".$icon)
+                                ?>
+                                <option value="<?php echo JURI::root()."media/com_gmap/".$icon;?>"><?php echo $icon;?></option>
+                    <?php
+                            }
+                    ?>
                     <option value="<?php echo JURI::root();?>" onclick="LoadIcon(this)"> <?php echo JText::_( 'Select your own:' ); ?></option>
                 </select>
+
             </td>            
         </tr>
         <tr>

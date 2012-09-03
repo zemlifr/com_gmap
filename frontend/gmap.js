@@ -10,6 +10,14 @@ function MyMarker (marker,set,info) {
     this.Hide = function(){marker.setVisible(false);}
 }
 
+
+function GetNodeText(xmlNode) {
+    if(!xmlNode) return '';
+    if(typeof(xmlNode.textContent) != "undefined") return xmlNode.textContent;
+    return xmlNode.firstChild.nodeValue;
+}
+
+
 function downloadUrl(url,callback)
 {
     var request = window.ActiveXObject ? new ActiveXObject('Microsoft.XMLHTTP') : new XMLHttpRequest;
@@ -70,7 +78,7 @@ function LoadMarkers(data)
     var coords = new google.maps.LatLng(parseFloat(markersXML[i].getAttribute("lat")),
                                         parseFloat(markersXML[i].getAttribute("lng")));
     
-    var text =  markersXML[i].hasChildNodes() ? markersXML[i].childNodes[0].nodeValue : " ";
+    var text = GetNodeText(markersXML[i]);
     
     text = "<h2>"+title+"</h2>"+"<p/>"+text;
     

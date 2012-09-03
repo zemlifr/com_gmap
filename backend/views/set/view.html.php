@@ -20,7 +20,8 @@ class GmapViewSet extends JView
         
         $model =& $this->getModel('set');
         $data =& $model->getData();
-              $model->getIconList();
+        $icons = $model->getIconList();
+        
         if($data)
           {
             JToolBarHelper::title('Google map - <small>'.$data->title.'</small>','');
@@ -33,6 +34,7 @@ class GmapViewSet extends JView
           } 
           
         $this->assignRef('data', $data);
+        $this->assignRef('icons', $icons);
 
         parent::display($tpl);
 

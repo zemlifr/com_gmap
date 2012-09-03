@@ -110,11 +110,20 @@ class GmapModelSet extends JModel
            return true;
     }
     
-    function getIconList()
-    {
-    /*foreach (JFolder::files(JPATH_ROOT.'/media/com_gmap') as $folder){
-        echo $folder."\n";
-    }*/
+    function getIconList( $name, $extensions =  "bmp|gif|jpg|png" )
+{
+        $directory = "media".DS."com_gmap";
+        
+        jimport( 'joomla.filesystem.folder' );
+        $imageFiles = JFolder::files( JPATH_SITE.DS.$directory );
+        $images = array();
+        foreach ( $imageFiles as $file ) {
+           if ( preg_match( "#$extensions#i", $file ) ) {
+                        $images[] = $file;
+                }
+        }
+ 
+        return $images;
 
     }
 
